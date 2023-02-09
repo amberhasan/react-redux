@@ -7,7 +7,7 @@ interface ProductsListProps {
 const initialProducts = [
     {title: 'Escape From Tarkov', price: 60, id: 'eft'},
     {title: 'Hunt: Showdown', price: 70, id: 'hunt'},
-    {title: 'Hell Let Loose', price: 55, id: 'hil'},
+    {title: 'The Last of Us', price: 55, id: 'hil'},
 ]
 const ProductsList: React.FC<ProductsListProps> = ({}) => {
     return (
