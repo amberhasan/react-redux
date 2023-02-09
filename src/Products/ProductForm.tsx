@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Product } from "./products.slice";
+import { useAppDispatch } from "../store.hooks";
+import { addProduct, Product } from "./products.slice";
 
 const ProductForm: React.FC = () => {
-  const [{ title, price, id }, setProduct] = useState<Product>({
+  const dispatch = useAppDispatch();
+
+  const [product, setProduct] = useState<Product>({
     id: "",
     title: "",
     price: 0,
@@ -16,10 +19,17 @@ const ProductForm: React.FC = () => {
       const newValue = { ...prev };
       return newValue; //if you change this to return prev, then as you change the values, nothing would show as changed bc React would return prev, not the new stuff
     });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(addProduct(product));
+  };
+
+  const { title, price, id } = product;
   return (
     <>
       <h2>Add Game To The Store</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Game title"
